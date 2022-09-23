@@ -71,43 +71,6 @@ Please not that to facilitate the later electrical connection, the marked access
 iWood can withstand most woodworking operations so diverse smart things can be made using iWood.
 Here are the examples of how smart table, nightstand, and cutting board can be made.
 
-### Table
-The table consisted of four wooden legs attached to a 1220mm × 610mm × 12.7mm plywood tabletop, which was created using two iWood boards attached side-by-side.
-
-![table](./images/table.png)
-
-#### Tools and Materials
-
-- Two 1/2inch or 1 inch thick iWood
-- [Max Drill & Home Tool Kit](https://a.co/d/b6gZmiJ)
-- [Jigsaw](https://a.co/d/4tzq35w)
-- [Sander](https://a.co/d/84EjKV1) and [Sanding Pads](https://a.co/d/5d0wtur)
-- [60 inch Bar Clamps](https://www.harborfreight.com/60-in-aluminum-f-style-bar-clamp-60673.html?utm_source=google&utm_medium=cpc&utm_campaign=17890471891&campaignid=17890471891&utm_content=146321473864&adsetid=146321473864&product=60673&store=&gclid=Cj0KCQjwj7CZBhDHARIsAPPWv3ewYJpY6wVamlKSgkyAdApbYyD1VPTYwRjKL2F4Onukndyx26Ju2aoaAlgBEALw_wcB)
-- [Four Table lags](https://www.homedepot.com/p/Waddell-WAD2428-2-1-8-in-x-2-1-8-in-x-28-in-Pine-Traditional-Leg-10001528/202528521?)
-- [Wood glue](https://a.co/d/1thNf7T)
-
-#### Steps
-
-The tabletop was made thick purposefully to hold the pressure from user activities. Each leg came with a pre-installed 8mm hanger bolt so pilot holes were created at the four corners of the tabletop using a drill driver to allow the legs to be mounted To finish the process, the surface of the tabletop was smoothed using sandpaper and coated with protective PU to prevent it from water and warping. 
-
-### Table
-The table consisted of four wooden legs attached to a 1220mm × 610mm × 12.7mm plywood tabletop, which was created using two iWood boards attached side-by-side.
-
-![table](./images/table.png)
-
-#### Tools and Materials
-
-- Two 1/2inch or 1 inch thick iWood
-- [Max Drill & Home Tool Kit](https://a.co/d/b6gZmiJ)
-- [Jigsaw](https://a.co/d/4tzq35w)
-- [Sander](https://a.co/d/84EjKV1) and [Sanding Pads](https://a.co/d/5d0wtur)
-- [60 inch Bar Clamps](https://www.harborfreight.com/60-in-aluminum-f-style-bar-clamp-60673.html?utm_source=google&utm_medium=cpc&utm_campaign=17890471891&campaignid=17890471891&utm_content=146321473864&adsetid=146321473864&product=60673&store=&gclid=Cj0KCQjwj7CZBhDHARIsAPPWv3ewYJpY6wVamlKSgkyAdApbYyD1VPTYwRjKL2F4Onukndyx26Ju2aoaAlgBEALw_wcB)
-- [Four Table lags](https://www.homedepot.com/p/Waddell-WAD2428-2-1-8-in-x-2-1-8-in-x-28-in-Pine-Traditional-Leg-10001528/202528521?)
-- [Wood glue](https://a.co/d/1thNf7T)
-
-#### Steps
-
-The tabletop was made thick purposefully to hold the pressure from user activities. Each leg came with a pre-installed 8mm hanger bolt so pilot holes were created at the four corners of the tabletop using a drill driver to allow the legs to be mounted To finish the process, the surface of the tabletop was smoothed using sandpaper and coated with protective PU to prevent it from water and warping. 
 
 ### Table
 The table consisted of four wooden legs attached to a 1220mm × 610mm × 12.7mm plywood tabletop, which was created using two iWood boards attached side-by-side.
@@ -147,13 +110,13 @@ The structure of the nightstand was more complicated than the table. It consiste
 
 The top panel (500mm × 500mm × 12.7mm) and drawer bottom (310mm × 375mm  × 6.35mm) were created using iWood and a jigsaw. The top panel was attached to the frame and side panels from the corners using four 10mm wood screws. The drawer bottom was fixed to the notch of the drawer sides using glue. We also polished the top panel using sandpaper and painted it in espresso stain to match the color of the rest of the nightstand. 
 
-![nightstand](./images/table.png)
+![nightstand](./images/nightstand.png)
 
 
 ### Cutting Board
 Like regular plywood, iWood can withstand laser cutting. You can create a custom cutting board (400mm × 600mm × 6.35mm), using 3D modeling software and a laser cutter. No additional configuration was needed for the laser cutter and the machine was set to cut a plywood board of 6.35mm thick.
 
-![table](./images/cuttingboard.png)
+![cuttingboard](./images/cuttingboard.png)
 
 ## Connecting to iWood
 
