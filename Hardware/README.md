@@ -10,6 +10,7 @@ For safety and health's sake, the following steps should be done in woodworking 
 
 ### Materials
 
+- Four [Analog Discovery](https://a.co/d/8UZeghu)
 - Two [1/8 x 24 x 24 inch plywood](https://a.co/d/iPqR0PH) or  [1/2 x 24 x 24 inch plywood](https://www.homedepot.com/p/Handprint-1-4-in-x-2-ft-x-2-ft-Sanded-Plywood-300810/202093828)
 - Two [24 x 24 inch acrylic](https://a.co/d/brCa8oK)
 - 24 x 24 inch PTFE film or [PTFE roll](https://a.co/d/5RTONVc)
