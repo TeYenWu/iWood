@@ -1,7 +1,4 @@
 # Software of iWood
-This page gives the instruction how to run iWood data collection program, in the process of iWood fabrication, and also includes the examples of making smart item using iWood.
-Please carefully follow the below steps for the best performance of iWood.
-
 
 ## Installation
 1. install [Anaconda](https://docs.anaconda.com/anaconda/install/)

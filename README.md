@@ -14,4 +14,4 @@ iWood is interactive plywood that can sense vibration based on triboelectric eff
 No firmware now
 
 ## Software
-[Software page](./Software/README.md) elaborates the steps of iWood software programs.
+[Software page](./Software/README.md) shows how to run iWood software programs, including the steps of data collection, training and demo.
