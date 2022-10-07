@@ -98,7 +98,7 @@ class DSPUtils:
     @staticmethod
     def is_noisy(sig, fft_windows):
 
-        energy = calculate_total_fft_energy(fft_windows)
+        energy = DSPUtils.calculate_total_fft_energy(fft_windows)
         COARSE_ENERGY_THRESHOULD = 0.8 ## this value should be adaptive
 
         if energy > COARSE_ENERGY_THRESHOULD:
@@ -108,14 +108,11 @@ class DSPUtils:
 
     ### calculate the FFT along windows
     @staticmethod
-    def convert_windows_to_fft_windows(windows):
+    def convert_windows_to_fft_windows(windows, window_size):
         fft_windows = []
 
         for sig in windows:
-            filtered_signal = DSPUtils.apply_low_pass_filter(sig)
-            filtered_signal = DSPUtils.remove_power_line_noise(filtered_signal)
-            # filtered_signal = apply_window_filter(filtered_signal)
-            fft_window = DSPUtils.calculate_fft(filtered_signal)
+            fft_window = DSPUtils.calculate_fft(sig, window_size)
             fft_windows.append(fft_window)
         return np.array(fft_windows)
 
@@ -125,11 +122,12 @@ class DSPUtils:
         filtered_windows = []
 
         for sig in windows:
+
             filtered_signal = DSPUtils.apply_low_pass_filter(sig)
             filtered_signal = DSPUtils.remove_power_line_noise(filtered_signal)
             # filtered_signal = apply_window_filter(filtered_signal)
             filtered_windows.append(filtered_signal)
-        return np.array(filtered_signal)
+        return np.array(filtered_windows)
 
     ### substrate background_noise_profile from each fft window
     @staticmethod
@@ -145,9 +143,9 @@ class DSPUtils:
     def segment_along_windows(windows, background_fft_profile, window_size, shift_size):
         FINE_ENERGY_THRESHOULD = 0.01 ## should be adaptive
         ENERGY_WINDOWN_SIZE = 10 ## should be adaptive
-
+        
         filtered_windows = DSPUtils.lowpass_filter_along_windows(windows)
-        fft_windows = DSPUtils.convert_windows_to_fft_windows(filtered_windows)
+        fft_windows = DSPUtils.convert_windows_to_fft_windows(filtered_windows, window_size)
         fft_windows = DSPUtils.remove_background_noise_along_fft_windows(fft_windows, background_fft_profile)
         
         segmented_signal = []
@@ -169,7 +167,7 @@ class DSPUtils:
                 if len(segmented_signal) == 0:
                     segmented_signal = filtered_signal
                 else:
-                    segmented_signal = np.concatenate(segmented_signal, filtered_signal[-shift_size:])
+                    segmented_signal = np.concatenate((segmented_signal, filtered_signal[-shift_size:]))
 
                 segmented_fft_window.append(fft_window.tolist())
 

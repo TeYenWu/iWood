@@ -94,7 +94,7 @@ def collect_data(device, streaming_server):
 
 def demo(device, streaming_server):
 
-    model_file = './model/'+'cuttingboard_RF_model'
+    model_file = os.path.dirname(__file__)+ '/model/'+'cuttingboard_RF_model'
     loaded_model = joblib.load(model_file)
 
     windows = []
@@ -112,27 +112,27 @@ def demo(device, streaming_server):
             print("update background profile")
 
         data = device.sample().tolist()
-        streaming_server.streaming_signal_in_FFT(data, background_fft_profile)
-        if data != None and len(data) > 0:
-            windows.append(data)
-        if len(windows) > PREDICTION_WINDOW_SIZE:
-            windows.pop(0)
-        if len(windows) >= PREDICTION_WINDOW_SIZE :
-            signal, fft_windows = DSPUtils.segment_along_windows(windows, background_fft_profile, BUFFER_SIZE, SHIFT_SIZE)
-            if not DSPUtils.is_noisy(signal, fft_windows):
-                prediction = loaded_model.predict([extract_feature(signal, fft_windows)])
-                poll.append(prediction[0])
-            else:
-                poll.append("Noisy")
-        if len(poll) > POLL_SIZE:
-            poll.pop(0)
-        if len(poll) >= POLL_SIZE:
-            max_occur = max(poll,key=poll.count)
-            if poll.count(max_occur) >= POLL_SIZE/2:
-                data_string = "result,"+ max_occur + '\n'
-                with lock:
-                    streaming_data.append(data_string)
-                print(max_occur)
+        if len(data) > 0:
+            streaming_server.streaming_signal_in_FFT(data, background_fft_profile)
+            if data != None and len(data) > 0:
+                windows.append(data)
+            if len(windows) > PREDICTION_WINDOW_SIZE:
+                windows.pop(0)
+            if len(windows) >= PREDICTION_WINDOW_SIZE :
+                signal, fft_windows = DSPUtils.segment_along_windows(windows, background_fft_profile, Device.BUFFER_SIZE, Device.SHIFT_SIZE)
+                if not DSPUtils.is_noisy(signal, fft_windows):
+                    prediction = loaded_model.predict([DSPUtils.extract_feature(signal, fft_windows)])
+                    poll.append(prediction[0])
+                else:
+                    poll.append("Noisy")
+            if len(poll) > POLL_SIZE:
+                poll.pop(0)
+            if len(poll) >= POLL_SIZE:
+                max_occur = max(poll,key=poll.count)
+                if poll.count(max_occur) >= POLL_SIZE/2:
+                    data_string = "result,"+ max_occur + '\n'
+                    streaming_server.enqueue(data_string)
+                    print(max_occur)
 
 
 def main():

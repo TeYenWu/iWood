@@ -6,7 +6,7 @@ from serial.tools import list_ports
 from analog_discovery import AnalogDiscovery
 
 from dsp_utils import DSPUtils
-
+import numpy as np  
 
 class Device:
 
@@ -41,16 +41,18 @@ class Device:
 
 	def calculate_background_fft_profile(self):
 
-		self.background_fft_profile = None
+		self.background_fft_profile = []
 		for _ in range (10):
 			sig = self.sample()
+			while len(sig) <= 0:
+				sig = self.sample()
 			filtered_signal = DSPUtils.apply_low_pass_filter(sig)
 			filtered_signal = DSPUtils.remove_power_line_noise(filtered_signal)
 		    # filtered_signal = apply_window_filter(filtered_signal)
 			fft = DSPUtils.calculate_fft(filtered_signal, Device.BUFFER_SIZE)
 
-			if self.background_fft_profile:
-				self.background_fft_profile = np.amax([fft, background_fft_profile], axis = 0)
+			if len(self.background_fft_profile) > 0:
+				self.background_fft_profile = np.amax([fft, self.background_fft_profile], axis = 0)
 			else:
 				self.background_fft_profile = fft
 
@@ -61,12 +63,12 @@ class Device:
 
 
 	def sample(self):
-	    if self.option == SAMPLE_DEVICE_ARDUINO:
-	        return sample_from_arduino_device()
-	    elif self.option == SAMPLE_DEVICE_ANALOG_DISCOVERY:
-	        return sample_from_analog_discovery()
+	    if self.option == Device.SAMPLE_DEVICE_ARDUINO:
+	        return self.sample_from_arduino_device()
+	    elif self.option == Device.SAMPLE_DEVICE_ANALOG_DISCOVERY:
+	        return self.sample_from_analog_discovery()
 
-	def sample_from_analog_discovery():
+	def sample_from_analog_discovery(self):
 	    if len(self.internal_device.in_buffer) > 0:
 	        data =  self.internal_device.in_buffer.pop(0)
 	        # print(data)
@@ -75,12 +77,13 @@ class Device:
 	        # signal = down_sample(signal, DOWNSAMPLE_RATIO)
 	        
 	        return signal
+	    return np.array([])
 
 
 
 
 	#### todo : concat signal and apply sliding window 
-	def sample_from_arduino_device():
+	def sample_from_arduino_device(self):
 	    result = []
 	    while ser.in_waiting:  # Or: while ser.inWaiting():
 	        raw_data = str(ser.readline().decode('utf8'))

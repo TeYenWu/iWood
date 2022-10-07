@@ -32,7 +32,7 @@ class Server:
             
             fft = fft - background_fft_profile
 
-            fft[fft_window<0] = 0
+            fft[fft<0] = 0
 
             data_string = "feature"
             for i in range(len(fft)):
@@ -62,6 +62,7 @@ class Server:
 
     def start_server(self):
         self.thread = threading.Thread(target=self.streaming, daemon=True)
+        self.thread.start()
 
     def streaming(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s: 
@@ -73,23 +74,23 @@ class Server:
                 conn, addr = s.accept()
                 with conn:
                     self.is_streaming = True
-                    try:
-                        print('Connected by', addr)
-                        conn.setblocking(0)
-                        while True:
-                            if not self.streaming_queue.empty(timeout):
-                                data = self.streaming_data.get_nowait()
-                                # print(data)
-                                conn.sendall(data.encode())
-                            time.sleep(0.001)
-                            try:
-                                data = conn.recv(1024)
-                                if data:
-                                    char = data.decode().strip()
-                                    self.command = char
-                            except Exception as e:
-                                # printe)
-                                continue
-                    except:
-                        self.is_streaming = False
-                        print("socket client disconnected") 
+                    # try:
+                    print('Connected by', addr)
+                    conn.setblocking(0)
+                    while True:
+                        if not self.streaming_queue.empty():
+                            data = self.streaming_queue.get_nowait()
+                            # print(data)
+                            conn.sendall(data.encode())
+                        time.sleep(0.001)
+                        try:
+                            data = conn.recv(1024)
+                            if data:
+                                char = data.decode().strip()
+                                self.command = char
+                        except Exception as e:
+                            # printe)
+                            continue
+                    # except:
+                    #     self.is_streaming = False
+                    #     print("socket client disconnected") 

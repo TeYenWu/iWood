@@ -10,12 +10,12 @@
 import processing.serial.*;
 import processing.net.*; 
     
-Serial myPort;  // Create object from Serial class
+Serial myPort;  // Create obje end-of-stream.ct from Serial class
 Client myClient; 
 int dataStreaming = 1; // 0: from serial port, 1: from socket server
 int featureRowNum = 256;
 int featureColumnNum = 256;
-float maximumFeatureValue = 0.8;
+float maximumFeatureValue = 0.3;
 int index = 0;
 Float[][] features = new Float[featureRowNum][featureColumnNum];      // Data received from the serial port
 boolean isStreaming = false;

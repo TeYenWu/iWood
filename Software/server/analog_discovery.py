@@ -81,7 +81,7 @@ class AnalogDiscovery:
 
     def measure_single_analog_in(self):
         
-        configure_analog_in(self.sample_rate, self.window_size, 1, AnalogDiscovery.DEVICE_ANALOGIN_MODE_SINGLE)
+        self.configure_analog_in(self.sample_rate, self.window_size, 1, AnalogDiscovery.DEVICE_ANALOGIN_MODE_SINGLE)
 
         print("Wait after first device opening the analog in offset to stabilize")
         time.sleep(1)
@@ -113,10 +113,10 @@ class AnalogDiscovery:
         if self.hdwf == None:
             return
 
-        configure_analog_in(self.sample_rate, self.window_size, 1, AnalogDiscovery.DEVICE_ANALOGIN_MODE_SCANSCREEN)
+        self.configure_analog_in(self.sample_rate, self.window_size, 1, AnalogDiscovery.DEVICE_ANALOGIN_MODE_SCANSCREEN)
 
         shift_time = self.shift_size/self.sample_rate
-        rg = (c_double*window_size)()
+        rg = (c_double*self.window_size)()
         
         cValid = c_int(0)
         sts = c_int()
