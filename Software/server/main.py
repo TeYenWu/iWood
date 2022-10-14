@@ -11,16 +11,19 @@ from dsp_utils import DSPUtils
 
 SAMPLE_DATA = 0
 SAMPLE_FFT = 1
+DATA_COLLECTION_FOLDER = "./demo_data/"
 activity_list = ["Tap", "Swipe", "Knock", "Slap", "Writing", "Erasing","Staple", "Pen Sharpening",  "Pumping" , "Chopping", "Slicing", "Tenderlizing", "Stirring", "Rolling", "Dispensing Tape", "Grating"]
 
 
 def collect_data(device, streaming_server):
-    thing_name = input("Item Name :\n")
-    if not os.path.exists('./activity_data/'+thing_name + "/"):
-        os.makedirs('./activity_data/'+thing_name + "/")
-    user_name = input("Participant Name :\n")
-    if not os.path.exists('./activity_data/'+thing_name + "/" +user_name + "/"):
-        os.makedirs('./activity_data/'+thing_name + "/" + user_name + "/")
+    # thing_name = input("Item Name :\n")
+    thing_name = "cuttingboard"
+    if not os.path.exists(DATA_COLLECTION_FOLDER+thing_name + "/"):
+        os.makedirs(DATA_COLLECTION_FOLDER+thing_name + "/")
+    # user_name = input("Participant Name :\n")
+    user_name = "p0"
+    if not os.path.exists(DATA_COLLECTION_FOLDER+thing_name + "/" +user_name + "/"):
+        os.makedirs(DATA_COLLECTION_FOLDER+thing_name + "/" + user_name + "/")
 
     record_data = []
     is_recording = False
@@ -59,12 +62,12 @@ def collect_data(device, streaming_server):
 
         signal_in_one_window = device.sample()
 
-        streaming_server.streaming_signal_in_FFT(signal_in_one_window, background_fft_profile)
-
-        if signal_in_one_window and is_recording:
-            record_data.append(signal_in_one_window.tolist())
-            if time.time() - start_time > 3:
-                 is_recording = False
+        if len(signal_in_one_window) > 0 :
+            streaming_server.streaming_signal_in_FFT(signal_in_one_window, background_fft_profile)
+            if is_recording:
+                record_data.append(signal_in_one_window.tolist())
+                if time.time() - start_time > 3:
+                     is_recording = False
 
                 
         if len(record_data) > 0 and not is_recording:
@@ -72,14 +75,14 @@ def collect_data(device, streaming_server):
             ## create file if it doesn't exist or 
             ## append data to the file if it exists
             try:
-                with open('./activity_data/'+thing_name + "/" + user_name + "/" + activity_list[activity_index]+'.json', "r") as file:
+                with open(DATA_COLLECTION_FOLDER + thing_name + "/" + user_name + "/" + activity_list[activity_index]+'.json', "r") as file:
                     listObj = json.load(file)
             except:
                 listObj = []
                 print("new file")
 
             ### store the data into the list
-            with open('./activity_data/'+thing_name + "/" + user_name + "/"+ activity_list[activity_index]+'.json', "w+") as file:
+            with open(DATA_COLLECTION_FOLDER+thing_name + "/" + user_name + "/"+ activity_list[activity_index]+'.json', "w+") as file:
                 print(activity_list[activity_index])
                 print(len(listObj))
                 if overwrite and len(listObj) > 0:

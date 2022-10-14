@@ -2,10 +2,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.svm import SVC
 # MLP for Pima Indians Dataset with grid search via sklearn
-import keras
-from keras import models
-from keras import layers
-from keras.wrappers.scikit_learn import KerasClassifier
+# import keras
+# from keras import models
+# from keras import layers
+# from keras.wrappers.scikit_learn import KerasClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn import base 
 import numpy
@@ -46,7 +46,7 @@ def generate_cnn_model(class_num, optimizer='rmsprop', init='glorot_uniform'):
     return model
 
 def generate_RF_model():
-    return RandomForestClassifier(n_estimators=100, max_depth = 30,  max_features="auto")
+    return RandomForestClassifier(n_estimators=100, max_depth = 30)
 
 def dl_clone(model):
 	m = models.clone_model(model)
@@ -54,7 +54,7 @@ def dl_clone(model):
 	return m
 
 def generate_SVM_model():
-    return SVC(gamma=0.0001, kernel='poly')
+    return SVC(gamma='auto', kernel='rbf')
 
 
 if __name__ == '__main__':

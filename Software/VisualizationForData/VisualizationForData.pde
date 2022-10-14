@@ -66,9 +66,9 @@ void setup()
 
 void resetText(){
    result = "None";
-  // for(int i = 0 ; i < objects.length;i++){
-  //  result += "(" + (char)(i+'A') + ")  " + objects[i] + ", ";
-  //}
+   for(int i = 0 ; i < objects.length;i++){
+    result += "(" + (char)(i+'A') + ")  " + objects[i] + ", ";
+  }
 }
 
 void draw()
@@ -123,7 +123,7 @@ void draw()
   //isStreaming = false;  
   colorMode(RGB, 255);
   fill(255);
-  textSize(80);
+  textSize(20);
   textAlign(CENTER, CENTER);
   //result = "hello";
   //println(result);

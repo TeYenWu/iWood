@@ -35,7 +35,8 @@ pip install Pillow
 python teng_pattern_generator.py 
 ```
 
-2. laser-cut out the stencil of top and bottom electrode pattern on two 24 x 24 inch acrylic.
+2. store the PNG files of bot_without_connection.png and top_without_connection.png to usb drive for cutting stencil 
+3. laser-cut out the stencil of top and bottom electrode pattern on two 24 x 24 inch acrylic.
 
 ### Step2 Creating the electrodes on the plywood using stencils and conductive spray paint.
 1. Check if plywood is not warped or bent. It is important as warped plywood will separate the TENG structure. If plywood is warped, please follow this [instruction](https://theplywood.com/flattening-warped/) to flattern it.

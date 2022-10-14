@@ -5,10 +5,17 @@ import glob
 import json 
 from PIL import Image
 
-screw_diameter = 3/8*25.4 + 1
+# screw_diameter = 3/8*25.4 + 1
+# minimum_separation = screw_diameter * math.sqrt(2)
+# trace_width = 2
+# board_size = 610
+# color = [0, 0, 0, 255]
+
+screw_diameter = 9/64*25.4 + 1
 minimum_separation = screw_diameter * math.sqrt(2)
 trace_width = 2
-board_size = 610
+board_size = 100
+electrode_size = 13.3
 color = [0, 0, 0, 255]
 
 
@@ -93,5 +100,5 @@ def generate_connection_pattern(width, height, electrode_size, minimum_separatio
 	bim.save("bot_connection.png")
 
 if __name__ == "__main__":
-	generate_png_pattern(board_size, board_size, 80, minimum_separation, True)
-	generate_connection_pattern(board_size, board_size, 80, minimum_separation, True)
+	generate_png_pattern(board_size, board_size, electrode_size, minimum_separation, True)
+	generate_connection_pattern(board_size, board_size, electrode_size, minimum_separation, True)
